@@ -9,8 +9,8 @@ export const meta: V2_MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div>
-      <h1>Working</h1>
+    <div className="flex flex-col items-center py-32">
+      <h1 className="text-2xl font-bold">Working</h1>
     </div>
   )
 }
