@@ -5,7 +5,11 @@
     "build": "remix build",
     "dev": "remix dev",
     "start": "remix-serve build",
-    "typecheck": "tsc"
+    "typecheck": "tsc -b",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ignore-path .gitignore --ext js,jsx,ts,tsx .",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|css|ts|tsx)\"",
+    "format": "npm run prettier -- --list-different",
+    "format:write": "npm run prettier -- --write"
   },
   "dependencies": {
     "@remix-run/css-bundle": "^1.19.1",
@@ -22,6 +26,9 @@
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0",
     "typescript": "^5.0.4"
   },
   "engines": {
