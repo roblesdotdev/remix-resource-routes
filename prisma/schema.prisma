@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Job {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  title        String
+  description  String?  @db.Text
+  location     String?
+  remote       Boolean? @default(true)
+  content      Json?
+  tags         Tag[]
+  category     String?
+  categoryName String?
+
+  @@index([categoryName])
+  @@map("job")
+}
+
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  jobs Job[]
+
+  @@map("tag")
+}
