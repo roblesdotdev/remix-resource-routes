@@ -35,7 +35,11 @@ export const loader: LoaderFunction = async ({ request }) => {
   )
 }
 
-export default function Search() {
+export default function Search({
+  onSelect,
+}: {
+  onSelect: (id: string) => void
+}) {
   const fetcher = useFetcher()
   const [query, setQuery] = useState('')
   const debounceQuery = useDebounce(query, 300)
@@ -43,7 +47,7 @@ export default function Search() {
   const items = useMemo<Item[]>(() => {
     return fetcher.data?.items || []
   }, [fetcher.data])
-  const openCommand = debounceQuery.length > 0
+  const openCommand = debounceQuery.length > 0 && items.length > 0
 
   useEffect(() => {
     fetcher.load(`/resources/jobs?query=${debounceQuery}`)
@@ -64,7 +68,11 @@ export default function Search() {
             <CommandEmpty>No results were found for '{query}'.</CommandEmpty>
             <CommandGroup>
               {items.map(item => (
-                <CommandItem className="py-2" key={item.slug}>
+                <CommandItem
+                  className="py-2"
+                  key={item.slug}
+                  onSelect={() => onSelect(item.slug)}
+                >
                   {item.title}
                 </CommandItem>
               ))}
