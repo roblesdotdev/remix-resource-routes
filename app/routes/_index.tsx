@@ -1,5 +1,5 @@
 import type { V2_MetaFunction } from '@remix-run/node'
-import Autocomplete from '~/components/autocomplete'
+import Search from '~/components/search'
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -10,9 +10,9 @@ export const meta: V2_MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="flex flex-col items-center py-32">
+    <div className="flex h-screen flex-col items-center bg-[#121816] py-32 text-[#fafafa]">
       <h1 className="text-2xl font-bold">Search Jobs</h1>
-      <Autocomplete />
+      <Search />
     </div>
   )
 }
