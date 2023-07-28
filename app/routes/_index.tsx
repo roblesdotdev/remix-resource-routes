@@ -1,5 +1,5 @@
 import type { V2_MetaFunction } from '@remix-run/node'
-import Search from '~/components/search'
+import Search from '~/routes/resources.jobs'
 
 export const meta: V2_MetaFunction = () => {
   return [
