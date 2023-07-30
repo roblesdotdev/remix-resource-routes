@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Command as CommandPrimitive } from 'cmdk'
+import { Command as CommandPrimitive, useCommandState } from 'cmdk'
 import clsx from 'clsx'
 import { Loader2Icon, SearchIcon } from 'lucide-react'
 
@@ -64,15 +64,32 @@ CommandList.displayName = CommandPrimitive.List.displayName
 const CommandEmpty = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Empty>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>
->((props, ref) => (
-  <CommandPrimitive.Empty
-    ref={ref}
-    className="py-6 text-center text-sm text-white/50"
-    {...props}
-  />
-))
+>((props, ref) => {
+  const render = useCommandState(state => state.filtered.count === 0)
+  if (!render) return null
+  return (
+    <CommandPrimitive.Empty
+      ref={ref}
+      className="py-6 text-center text-sm text-white/50"
+      {...props}
+    />
+  )
+})
 
 CommandEmpty.displayName = CommandPrimitive.Empty.displayName
+
+const CommandLoading = React.forwardRef<
+  React.ElementRef<typeof CommandPrimitive.Empty>,
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Loading> & {
+    children: React.ReactNode
+  }
+>(({ children, ...props }, ref) => (
+  <CommandPrimitive.Loading ref={ref} {...props}>
+    <div className="py-6 text-center text-sm text-white/50">{children}</div>
+  </CommandPrimitive.Loading>
+))
+
+CommandLoading.displayName = CommandPrimitive.Loading.displayName
 
 const CommandGroup = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Group>,
@@ -141,6 +158,7 @@ export {
   CommandEmpty,
   CommandGroup,
   CommandItem,
+  CommandLoading,
   CommandShortcut,
   CommandSeparator,
 }

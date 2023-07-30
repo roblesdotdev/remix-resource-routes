@@ -15,7 +15,7 @@ import {
 
 type Items = Awaited<ReturnType<typeof searchJobs>>
 
-type Item = Items[0]
+type Item = NonNullable<Items>[0]
 
 type LoaderData = {
   items: Items
@@ -25,9 +25,11 @@ export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url)
   const query = url.searchParams.get('query')
   invariant(typeof query === 'string', 'query is required')
+  const items = await searchJobs(query)
+
   return json<LoaderData>(
     {
-      items: await searchJobs(query),
+      items,
     },
     {
       headers: { 'Cache-Control': 'max-age=60' },
@@ -45,9 +47,9 @@ export default function Search({
   const debounceQuery = useDebounce(query, 300)
   const isLoading = fetcher.state !== 'idle'
   const items = useMemo<Item[]>(() => {
-    return fetcher.data?.items || []
+    return fetcher.data?.items
   }, [fetcher.data])
-  const openCommand = debounceQuery.length > 0 && items.length > 0
+  const isOpen = debounceQuery.length > 0
 
   useEffect(() => {
     fetcher.load(`/resources/jobs?query=${debounceQuery}`)
@@ -63,22 +65,29 @@ export default function Search({
           placeholder="Search by title, skill or location..."
           loading={isLoading}
         />
-        {openCommand && (
+        {isOpen ? (
           <CommandList>
-            <CommandEmpty>No results were found for '{query}'.</CommandEmpty>
-            <CommandGroup>
-              {items.map(item => (
-                <CommandItem
-                  className="py-2"
-                  key={item.slug}
-                  onSelect={() => onSelect(item.slug)}
-                >
-                  {item.title}
-                </CommandItem>
-              ))}
-            </CommandGroup>
+            <CommandEmpty>
+              {isLoading
+                ? 'Loading...'
+                : `No results were found for '${query}'.`}
+            </CommandEmpty>
+            {!isLoading && items?.length > 0 ? (
+              <CommandGroup>
+                <CommandItem>Here</CommandItem>
+                {items.map(item => (
+                  <CommandItem
+                    className="py-2"
+                    key={item.slug}
+                    onSelect={() => onSelect(item.slug)}
+                  >
+                    {item.title}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            ) : null}
           </CommandList>
-        )}
+        ) : null}
       </Command>
     </div>
   )
