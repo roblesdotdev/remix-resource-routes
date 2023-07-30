@@ -74,7 +74,6 @@ export default function Search({
             </CommandEmpty>
             {!isLoading && items?.length > 0 ? (
               <CommandGroup>
-                <CommandItem>Here</CommandItem>
                 {items.map(item => (
                   <CommandItem
                     className="py-2"
