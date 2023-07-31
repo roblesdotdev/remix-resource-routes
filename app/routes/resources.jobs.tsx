@@ -57,8 +57,8 @@ export default function Search({
   }, [debounceQuery])
 
   return (
-    <div className="mx-auto w-full max-w-3xl px-4">
-      <Command shouldFilter={false} className="mt-12">
+    <div className="mx-auto w-full max-w-xl">
+      <Command shouldFilter={false}>
         <CommandInput
           value={query}
           onValueChange={setQuery}

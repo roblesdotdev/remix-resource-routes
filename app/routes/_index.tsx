@@ -1,5 +1,7 @@
 import type { V2_MetaFunction } from '@remix-run/node'
 import { useNavigate } from '@remix-run/react'
+import { GithubIcon } from 'lucide-react'
+import { Badge } from '~/components/ui/badge'
 import Search from '~/routes/resources.jobs'
 
 export const meta: V2_MetaFunction = () => {
@@ -15,9 +17,23 @@ export default function Index() {
   const handleSelect = (slug: string) => {
     navigate(`/jobs/${slug}`)
   }
+
   return (
-    <div className="flex h-screen flex-col items-center bg-[#121816] py-32 text-[#fafafa]">
-      <h1 className="text-2xl font-bold">Search Jobs</h1>
+    <div className="mx-auto flex h-screen max-w-xl flex-col gap-2 px-4 py-32">
+      <a
+        href="https://github.com/roblesdotdev/remix-resource-routes"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <Badge className="flex items-center gap-2 self-start">
+          <GithubIcon className="h-3 w-3" />
+          <span className="font-normal">Source Code</span>
+        </Badge>
+      </a>
+      <p className="mb-6 sm:text-lg">
+        Simple search autocomplete created with Remix Resource Routes, Tailwind
+        CSS, Prisma, Shadcn UI, and cmdk.
+      </p>
       <Search onSelect={handleSelect} />
     </div>
   )
