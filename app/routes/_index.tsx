@@ -19,18 +19,19 @@ export default function Index() {
   }
 
   return (
-    <div className="mx-auto flex h-screen max-w-xl flex-col gap-2 px-4 py-32">
+    <div className="mx-auto flex h-screen max-w-xl flex-col gap-2 px-4 py-24">
       <a
         href="https://github.com/roblesdotdev/remix-resource-routes"
         target="_blank"
         rel="noreferrer"
+        className="self-start"
       >
-        <Badge className="flex items-center gap-2 self-start">
+        <Badge className="flex items-center gap-2">
           <GithubIcon className="h-3 w-3" />
           <span className="font-normal">Source Code</span>
         </Badge>
       </a>
-      <p className="mb-6 sm:text-lg">
+      <p className="mb-6 text-fg-muted sm:text-lg">
         Simple search autocomplete created with Remix Resource Routes, Tailwind
         CSS, Prisma, Shadcn UI, and cmdk.
       </p>

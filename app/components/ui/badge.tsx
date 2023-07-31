@@ -8,7 +8,7 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          'border-transparent bg-white/10 text-white shadow hover:bg-white/20',
+          'border-transparent bg-canvas-muted text-fg-muted shadow hover:bg-fg-muted/10',
       },
     },
     defaultVariants: {

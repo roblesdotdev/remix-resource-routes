@@ -4,7 +4,18 @@ export default {
   content: ['./app/**/*.{js,jsx,ts,tsx}'],
 
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        canvas: {
+          DEFAULT: 'rgb(var(--canvas-default) / <alpha-value>)',
+          muted: 'rgb(var(--canvas-muted) / <alpha-value>)',
+        },
+        fg: {
+          DEFAULT: 'rgb(var(--fg-default) / <alpha-value>)',
+          muted: 'rgb(var(--fg-muted) / <alpha-value>)',
+        },
+      },
+    },
   },
   plugins: [],
 } satisfies Config

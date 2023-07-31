@@ -12,7 +12,7 @@ const Command = React.forwardRef<
   <CommandPrimitive
     ref={ref}
     className={clsx(
-      'flex w-full flex-col overflow-hidden rounded-md bg-black text-white',
+      'flex w-full flex-col overflow-hidden rounded-md bg-canvas-muted text-fg',
       className,
     )}
     {...props}
@@ -30,7 +30,7 @@ const CommandInput = React.forwardRef<
     <CommandPrimitive.Input
       ref={ref}
       className={clsx(
-        'flex w-full rounded-md bg-transparent py-4 pl-4 pr-2 text-lg outline-none placeholder:text-white/50 disabled:cursor-not-allowed disabled:opacity-50',
+        'flex w-full rounded-md bg-transparent py-4 pl-4 pr-2 text-lg outline-none placeholder:text-fg-muted/50 disabled:cursor-not-allowed disabled:opacity-50',
         className,
       )}
       {...props}
@@ -52,7 +52,7 @@ const CommandList = React.forwardRef<
   <CommandPrimitive.List
     ref={ref}
     className={clsx(
-      'cmdk-scroll max-h-[300px] overflow-y-auto overflow-x-hidden border-t-2 border-white/10',
+      'cmdk-scroll max-h-[300px] overflow-y-auto overflow-x-hidden border-t-2 border-fg-muted/10',
       className,
     )}
     {...props}
@@ -70,7 +70,7 @@ const CommandEmpty = React.forwardRef<
   return (
     <CommandPrimitive.Empty
       ref={ref}
-      className="py-6 text-center text-sm text-white/50"
+      className="py-6 text-center text-sm text-fg-muted/50"
       {...props}
     />
   )
@@ -85,7 +85,7 @@ const CommandLoading = React.forwardRef<
   }
 >(({ children, ...props }, ref) => (
   <CommandPrimitive.Loading ref={ref} {...props}>
-    <div className="py-6 text-center text-sm text-white/50">{children}</div>
+    <div className="py-6 text-center text-sm text-fg-muted/50">{children}</div>
   </CommandPrimitive.Loading>
 ))
 
@@ -113,7 +113,7 @@ const CommandSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CommandPrimitive.Separator
     ref={ref}
-    className={clsx('-mx-1 h-px bg-white/10', className)}
+    className={clsx('-mx-1 h-px bg-fg-muted/10', className)}
     {...props}
   />
 ))
@@ -126,7 +126,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={clsx(
-      'relative flex cursor-default select-none items-center rounded-sm px-2 py-3 outline-none aria-selected:bg-white/10 aria-selected:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+      'relative flex cursor-default select-none items-center rounded-sm px-2 py-3 outline-none aria-selected:bg-fg-muted/5 aria-selected:text-fg data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       className,
     )}
     {...props}

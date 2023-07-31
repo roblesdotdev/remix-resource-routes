@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --canvas-default: 18 18 23;
+  --canvas-muted: 27 27 34;
+
+  --fg-default: 244 244 244;
+  --fg-muted: 209 209 219;
+}
+
 .cmdk-scroll::-webkit-scrollbar {
   width: 6px;
 }
