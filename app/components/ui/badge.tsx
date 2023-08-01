@@ -9,6 +9,7 @@ const badgeVariants = cva(
       variant: {
         default:
           'border-transparent bg-canvas-muted text-fg-muted shadow hover:bg-fg-muted/10',
+        outline: 'border-fg-muted/30 bg-transparent text-fg-muted',
       },
     },
     defaultVariants: {

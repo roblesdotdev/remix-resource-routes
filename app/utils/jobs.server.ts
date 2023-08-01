@@ -36,3 +36,7 @@ export async function searchJobs(query: string) {
     take: 10,
   })
 }
+
+export function getJobBySlug(slug: string) {
+  return db.job.findUnique({ where: { slug }, include: { tags: true } })
+}
